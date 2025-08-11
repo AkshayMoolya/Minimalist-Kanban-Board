@@ -12,7 +12,15 @@ export const TaskModal = ({ isOpen, onClose, onSave, task = null }) => {
     if (task) {
       setTitle(task.title);
       setDescription(task.description || "");
-      setDueDate(task.dueDate ? task.dueDate.split("T")[0] : "");
+      setDueDate(
+        task.dueDate
+          ? typeof task.dueDate === "string"
+            ? task.dueDate.split("T")[0]
+            : task.dueDate instanceof Date
+              ? task.dueDate.toISOString().split("T")[0]
+              : ""
+          : ""
+      );
       setSubtasks(task.subtasks || []);
     } else {
       setTitle("");

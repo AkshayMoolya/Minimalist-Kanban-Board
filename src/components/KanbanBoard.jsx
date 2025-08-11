@@ -256,13 +256,13 @@ export const KanbanBoard = () => {
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
-        <div className="flex gap-4 overflow-x-auto pb-4 justify-center">
+        <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-4 justify-start sm:justify-center w-full">
           {Object.keys(ColumnType).map((columnKey) => {
             const columnTitle = ColumnType[columnKey];
             return (
               <div
                 key={columnTitle}
-                className="flex flex-col w-80 flex-shrink-0"
+                className="flex flex-col w-72 sm:w-80 flex-shrink-0"
               >
                 <KanbanColumn
                   title={columnTitle}
@@ -276,7 +276,8 @@ export const KanbanBoard = () => {
                   className="mt-2 w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-gray-400 hover:text-gray-600 transition-colors flex items-center justify-center gap-2"
                 >
                   <Plus className="w-4 h-4" />
-                  Add Task
+                  <span className="hidden xs:inline">Add Task</span>
+                  <span className="inline xs:hidden">Add</span>
                 </button>
               </div>
             );
@@ -285,7 +286,7 @@ export const KanbanBoard = () => {
 
         <DragOverlay>
           {activeTask ? (
-            <div className="kanban-card shadow-lg transform  scale-105">
+            <div className="kanban-card shadow-lg transform scale-105">
               <h3 className="font-semibold text-gray-800">
                 {activeTask.title}
               </h3>
